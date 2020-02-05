@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Guava Authors
+ * Copyright (C) 2019 The Guava Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.common.util.concurrent;
-
-import junit.framework.TestCase;
+package com.google.common;
 
 /**
- * Test for {@link ForwardingCheckedFuture}
+ * A dummy class so that the Maven Javadoc plugin will produce a jar. If it doesn't produce a jar,
+ * then the Sonatype repository manager issues an error.
  *
- * @author Ben Yu
+ * @author Chris Povirk
  */
-public class ForwardingCheckedFutureTest extends TestCase {
-  public void testForwarding() {
-    ForwardingObjectTester.testForwardingObject(ForwardingCheckedFuture.class);
-  }
-}
+class DummyJavadocClass {}
