@@ -35,7 +35,6 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Arrays;
-import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -227,7 +226,8 @@ public abstract class BaseEncoding {
    *
    * @throws DecodingException if the input is not a valid encoded string according to this
    *     encoding.
-   */ final byte[] decodeChecked(CharSequence chars)
+   */
+  final byte[] decodeChecked(CharSequence chars)
       throws DecodingException {
     chars = trimTrailingPadding(chars);
     byte[] tmp = new byte[maxDecodedSize(chars.length())];
@@ -832,8 +832,8 @@ public abstract class BaseEncoding {
       return new SeparatedBaseEncoding(this, separator, afterEveryChars);
     }
 
-    @LazyInit @MonotonicNonNullDecl private transient BaseEncoding upperCase;
-    @LazyInit @MonotonicNonNullDecl private transient BaseEncoding lowerCase;
+    @LazyInit @NullableDecl private transient BaseEncoding upperCase;
+    @LazyInit @NullableDecl private transient BaseEncoding lowerCase;
 
     @Override
     public BaseEncoding upperCase() {
@@ -1054,12 +1054,12 @@ public abstract class BaseEncoding {
   @GwtIncompatible // Writer
   static Writer separatingWriter(
       final Writer delegate, final String separator, final int afterEveryChars) {
-    final Appendable seperatingAppendable =
+    final Appendable separatingAppendable =
         separatingAppendable(delegate, separator, afterEveryChars);
     return new Writer() {
       @Override
       public void write(int c) throws IOException {
-        seperatingAppendable.append((char) c);
+        separatingAppendable.append((char) c);
       }
 
       @Override
